@@ -39,7 +39,7 @@ export const Home = () => {
               key={index}
               title={data.title}
               description={data.description}
-              image={data.image.replace(/([^:]\/)\/+/g, "$1")}
+              image={data.image ? data.image.replace(/([^:]\/)\/+/g, "$1") : ""}
               longDescription={data.longDescription}
               pricePerUnit={data.price.toString()}
             />
