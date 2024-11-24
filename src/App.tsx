@@ -28,7 +28,7 @@ const App = () => {
             }
           />
           <Route
-            path="/cardapio"
+            path="/"
             element={
               <>
                 <Navbar />
