@@ -9,7 +9,6 @@ import useCounterStore from "./zustand";
 const App = () => {
   const token = useCounterStore((state) => state.token); // Obtendo o token da store
 
-  // Função para proteger rotas privadas
   const ProtectedRoute = ({ element }: { element: JSX.Element }) => {
     return token ? element : <Navigate to="/" />; // Se não houver token, redireciona para a Home
   };
@@ -18,15 +17,6 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
-          <Route
-            path={"/"}
-            element={
-              <>
-                <Navbar />
-                <Home />
-              </>
-            }
-          />
           <Route
             path="/"
             element={
@@ -49,7 +39,7 @@ const App = () => {
               />
             }
           />
-          <Route path="*" element={<h1>404</h1>} />
+          <Route path="*" element={<h1>404 - Página não encontrada</h1>} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
