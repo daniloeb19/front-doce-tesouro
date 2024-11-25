@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, ButtonProps, Card as CardBootstrap } from "react-bootstrap";
 import { Modal } from "./Modal";
 import { theme } from "../styles/theme";
@@ -70,7 +70,7 @@ const StyledButton = styled(Button)<ButtonProps>`
 interface CardProps {
   title: string;
   description: string;
-  image: string | File | undefined;
+  image: string;
   longDescription: string;
   pricePerUnit: string;
   noBtn?: boolean;
@@ -98,24 +98,10 @@ export const Card: React.FC<CardProps> = ({
     setShow(false);
   };
 
-  const imageUrl = `${import.meta.env.VITE_API_URL}/${image}`;
-
-  const normalizedUrl = imageUrl.replace(/([^:]\/)\/+/g, "$1");
-
   return (
     <>
       <StyledCard>
-        <CardImage
-          variant="top"
-          src={
-            typeof image === "string"
-              ? normalizedUrl // Substitui barras invertidas por barras normais
-              : image instanceof File
-              ? URL.createObjectURL(image)
-              : ""
-          }
-          alt="Card image"
-        />
+        <CardImage variant="top" src={image || ""} alt="Card image" />
         <CardBody>
           <CardTitle>{title}</CardTitle>
           <CardText>{description}</CardText>
