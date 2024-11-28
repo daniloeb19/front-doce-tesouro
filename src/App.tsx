@@ -4,15 +4,8 @@ import { Dashboard } from "./pages/Dashboard";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
 import { Navbar } from "./components/NavBar";
-import useCounterStore from "./zustand";
 
 const App = () => {
-  const token = useCounterStore((state) => state.token); // Obtendo o token da store
-
-  const ProtectedRoute = ({ element }: { element: JSX.Element }) => {
-    return token ? element : <Navigate to="/" />; // Se não houver token, redireciona para a Home
-  };
-
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -29,14 +22,10 @@ const App = () => {
           <Route
             path="/dashboard"
             element={
-              <ProtectedRoute
-                element={
-                  <>
-                    <Navbar />
-                    <Dashboard />
-                  </>
-                }
-              />
+              <>
+                <Navbar />
+                <Dashboard />
+              </>
             }
           />
           <Route path="*" element={<h1>404 - Página não encontrada</h1>} />

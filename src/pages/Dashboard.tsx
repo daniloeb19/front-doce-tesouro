@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { Card } from "../components/Card"; // Substitua pelo seu componente de exibição de produtos
 import { axiosInstance } from "../config/axios"; // Substitua pela sua instância configurada do Axios
 import useCounterStore from "../zustand"; // Substitua pelo seu hook para gerenciar o token ou estado global
+import { useNavigate } from "react-router-dom";
 
 interface Product {
   _id?: string;
@@ -20,6 +21,12 @@ export const Dashboard: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const { token } = useCounterStore();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
+  }, []);
 
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => {
@@ -290,7 +297,7 @@ export const Dashboard: React.FC = () => {
                 <img
                   src={
                     typeof formik.values.image === "string"
-                      ? `${import.meta.env.VITE_API_URL}/${formik.values.image}`
+                      ? `${formik.values.image}`
                       : URL.createObjectURL(formik.values.image)
                   }
                   alt="Imagem do produto"

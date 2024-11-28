@@ -70,7 +70,7 @@ const StyledButton = styled(Button)<ButtonProps>`
 interface CardProps {
   title: string;
   description: string;
-  image: string;
+  image: string | File;
   longDescription: string;
   pricePerUnit: string;
   noBtn?: boolean;
@@ -88,10 +88,9 @@ export const Card: React.FC<CardProps> = ({
   const [show, setShow] = useState(false);
 
   const handleMessage = () => {
-    window.open(
-      `https://api.whatsapp.com/send?phone=${numberPhone}&text=Opa%20me%20interessei%20nesse%20produto%20aqui%2C%20t%C3%A1%20dispon%C3%ADvel%20ainda%3F`,
-      "_blank"
-    );
+    const linkWhatsApp = `https://api.whatsapp.com/send?phone=${numberPhone}&text=Opa%20me%20interessei%20nesse%20produto%20aqui%20%22${title}%22%2C%20t%C3%A1%20dispon%C3%ADvel%20ainda%3F`;
+
+    window.open(linkWhatsApp, "_blank");
   };
 
   const handleClose = () => {
@@ -101,7 +100,11 @@ export const Card: React.FC<CardProps> = ({
   return (
     <>
       <StyledCard>
-        <CardImage variant="top" src={image || ""} alt="Card image" />
+        <CardImage
+          variant="top"
+          src={typeof image === "string" ? image : URL.createObjectURL(image)}
+          alt="Card image"
+        />
         <CardBody>
           <CardTitle>{title}</CardTitle>
           <CardText>{description}</CardText>
