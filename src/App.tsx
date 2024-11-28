@@ -1,6 +1,6 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { Home } from "./pages/Home";
-import { Dashboard } from "./pages/Dashboard";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Home } from "./pages/home/Home";
+import { Dashboard } from "./pages/dashboard/Dashboard";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
 import { Navbar } from "./components/NavBar";

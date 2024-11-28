@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Card } from "../components/Card";
+import { Card } from "../../components/Card";
 import { useEffect, useState } from "react";
-import { axiosInstance } from "../config/axios";
+import { axiosInstance } from "../../config/axios";
 
 export const Home = () => {
   interface CardData {

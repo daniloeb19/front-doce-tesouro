@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Modal, Row, Col, Container } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Card } from "../components/Card"; // Substitua pelo seu componente de exibição de produtos
-import { axiosInstance } from "../config/axios"; // Substitua pela sua instância configurada do Axios
-import useCounterStore from "../zustand"; // Substitua pelo seu hook para gerenciar o token ou estado global
+import { Card } from "../../components/Card"; // Substitua pelo seu componente de exibição de produtos
+import { axiosInstance } from "../../config/axios"; // Substitua pela sua instância configurada do Axios
+import useCounterStore from "../../zustand"; // Substitua pelo seu hook para gerenciar o token ou estado global
 import { useNavigate } from "react-router-dom";
 
 interface Product {
