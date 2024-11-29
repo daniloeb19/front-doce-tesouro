@@ -281,7 +281,14 @@ export const Dashboard: React.FC = () => {
                 onChange={(event) => {
                   const target = event.currentTarget as HTMLInputElement;
                   if (target.files && target.files[0]) {
-                    formik.setFieldValue("image", target.files[0]);
+                    const file = target.files[0];
+                    // Converter o arquivo para base64
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                      // Defina o valor de "image" como base64
+                      formik.setFieldValue("image", reader.result as string);
+                    };
+                    reader.readAsDataURL(file);
                   }
                 }}
                 isInvalid={!!formik.errors.image}
@@ -297,8 +304,8 @@ export const Dashboard: React.FC = () => {
                 <img
                   src={
                     typeof formik.values.image === "string"
-                      ? `${formik.values.image}`
-                      : URL.createObjectURL(formik.values.image)
+                      ? formik.values.image
+                      : ""
                   }
                   alt="Imagem do produto"
                   style={{ width: "100px", height: "100px" }}
